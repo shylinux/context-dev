@@ -8,6 +8,13 @@ export GOBIN=~/go/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/usr/local/go/bin
 
+cat >> ~/bashrc <<EOF
+export GOPATH=~/context:~/go
+export GOBIN=~/go/bin
+export PATH=$PATH:~/go/bin
+export PATH=$PATH:/usr/local/go/bin
+EOF
+
 cd ~/go/src/github.com/
 go install ./nsf/gocode/
 go install ./jstemmer/gotags/
