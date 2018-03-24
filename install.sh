@@ -1,15 +1,19 @@
 #!/bin/bash
-[ -e /usr/local/go ] || sudo tar xvf go1.6.2.linux-386 -C /usr/local
-tar xvf golang.tar.gz -C ~
-tar xvf vim.tar.gz -C ~
+if [ `uname` = 'Linux' ] && ! [ -e /usr/local/go ]
+then
+	sudo tar xvf go1.6.2.linux-386 -C /usr/local
+fi
+
+tar xvf vim.tar.gz -C ~ &> /dev/null
+tar xvf golang.tar.gz -C ~ &> /dev/null
 
 export GOPATH=~/context:~/go
 export GOBIN=~/go/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/usr/local/go/bin
 
-cat >> ~/bashrc <<EOF
-export GOPATH=~/context:~/go
+cat >> ~/.bashrc <<EOF
+export GOPATH=~/context:~/go:$GOPATH
 export GOBIN=~/go/bin
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:/usr/local/go/bin
